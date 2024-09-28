@@ -1,0 +1,34 @@
+@model List<PSG.DataAccessLayer.Models.Product>
+@{
+  ViewData["Title"] = "Products";
+}
+
+<table class="table table-bordered table-striped table-responsive text-center">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Expiry Date</th>
+      <th>Price</th>
+      <th>Unit</th>
+      <th>Actions</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var p in Model)
+    {
+
+      <tr>
+        <td>@p.Name</td>
+        <td>@p.ExpiryDate</td>
+        <td>@p.Price</td>
+        <td>@p.Unit</td>
+        <td>
+          <a href="/Product/Update/@p.Id" class="btn btn-warning">Update</a>
+          <a href="/Product/Delete/@p.Id" class="btn btn-danger">Delete</a>
+        </td>
+
+      </tr>
+    }
+  </tbody>
+</table>
