@@ -2,6 +2,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PSG.BusinessLogicLayer\PSG.BusinessLogicLayer.csproj" />
+    <ProjectReference Include="..\PSG.DataAccessLayer\PSG.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\PSG.Shared\PSG.Shared.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

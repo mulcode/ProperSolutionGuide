@@ -1,9 +1,10 @@
-using PSG.DataAccessLayer.Models;
+using PSG.Shared.Models;
 using Npgsql;
+using PSG.Shared.Interfaces;
 
 namespace PSG.DataAccessLayer
 {
-    public class ProductDataAccess : AppAdoBase
+    public class ProductDataAccess : AppAdoBase, IProductDataLayer
     {
         public bool Create(Product product)
         {
@@ -12,7 +13,7 @@ namespace PSG.DataAccessLayer
             VALUES('{product.Name}','{product.ExpiryDate.ToString("yyyy-MM-dd hh:mm:ss")}','{product.Price}','{product.Unit}')";
 
             //sending query to execute
-            var rowAffect = ExeCuteSql(query);
+            var rowAffect = ExecuteSql(query);
             if (rowAffect > 0)
             {
                 return true;
@@ -25,7 +26,7 @@ namespace PSG.DataAccessLayer
         {
             string query = $@"UPDATE Product SET name='{product.Name}',expiry_date = '{product.ExpiryDate.ToString("yyyy-MM-dd HH:mm:ss")}',price='{product.Price}', unit='{product.Unit}' WHERE id='{product.Id}'";
 
-            var rowAffect = ExeCuteSql(query);
+            var rowAffect = ExecuteSql(query);
             if (rowAffect > 0)
             {
                 return true;
@@ -35,7 +36,7 @@ namespace PSG.DataAccessLayer
         public bool Delete(int id)
         {
             string query = $@"DELETE FROM Product WHERE Id= '{id}'";
-            var rowAffect = ExeCuteSql(query);
+            var rowAffect = ExecuteSql(query);
             if (rowAffect > 0)
             {
                 return true;

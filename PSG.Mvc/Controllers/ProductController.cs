@@ -1,14 +1,17 @@
 using PSG.BusinessLogicLayer;
-using PSG.DataAccessLayer.Models;
+using PSG.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
+using PSG.Shared.Interfaces;
 
 namespace PSG.Mvc.Controllers
 {
     public class ProductController : Controller
     {
-        public IActionResult Index()
+        IProductBusinessLayer nextLayer;
+
+        public ProductController(IProductBusinessLayer layer)
         {
-            return View();
+            nextLayer = layer;
         }
         [HttpGet]
         public IActionResult Create()
@@ -19,7 +22,6 @@ namespace PSG.Mvc.Controllers
         [HttpPost]
         public IActionResult Create(Product product)
         {
-            ProductLogicLayer nextLayer = new ProductLogicLayer();
             bool result = nextLayer.Create(product);
             if (result == true)
             {
@@ -31,7 +33,6 @@ namespace PSG.Mvc.Controllers
         [HttpGet]
         public IActionResult Products()
         {
-            ProductLogicLayer nextLayer = new ProductLogicLayer();
             List<Product> products = nextLayer.GetProducts();
 
             return View(products);
@@ -40,7 +41,6 @@ namespace PSG.Mvc.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            ProductLogicLayer nextLayer = new ProductLogicLayer();
             Product result = nextLayer.GetProductById(id);
             return View(result);
         }
@@ -48,7 +48,6 @@ namespace PSG.Mvc.Controllers
         [HttpPost]
         public IActionResult Update(Product product)
         {
-            ProductLogicLayer nextLayer = new ProductLogicLayer();
             bool result = nextLayer.Update(product);
 
             if (result == true)
@@ -62,7 +61,6 @@ namespace PSG.Mvc.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            ProductLogicLayer nextLayer = new ProductLogicLayer();
             bool result = nextLayer.Delete(id);
             if (result != true)
             {

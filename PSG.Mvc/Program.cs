@@ -1,7 +1,15 @@
+using PSG.BusinessLogicLayer;
+using PSG.DataAccessLayer;
+using PSG.Shared.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//If asked provide
+builder.Services.AddScoped<IProductDataLayer, ProductDataAccess>();
+builder.Services.AddScoped<IProductBusinessLayer, ProductLogicLayer>();
 
 var app = builder.Build();
 

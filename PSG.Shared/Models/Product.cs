@@ -1,4 +1,4 @@
-namespace PSG.DataAccessLayer.Models
+namespace PSG.Shared.Models
 {
     public class Product
     {

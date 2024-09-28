@@ -14,7 +14,7 @@ namespace PSG.DataAccessLayer
             Connection.Open(); //open connection
             return Connection;
         }
-        public int ExeCuteSql(string sql)
+        public int ExecuteSql(string sql)
         {
             //open connection and hold in the property
             OpenConnection();

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\PSG.DataAccessLayer\PSG.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\PSG.Shared\PSG.Shared.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
